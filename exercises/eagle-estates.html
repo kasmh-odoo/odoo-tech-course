@@ -121,6 +121,72 @@
       </main>
     </div>
     <div class="global-ui"></div>
+    <div>
+      <h1>Realty Management - Part 1</h1>
+
+      <p>A Realty management agency has approached your company to implement a property management solution using Odoo.
+        Their requirements are as follows:</p>
+
+      <h2>Properties</h2>
+      <p>The buildings, apartments, and houses to be managed within the real estate module. Properties include the
+        following attributes based on the current system schema:</p>
+      <ul>
+        <li><strong>Name:</strong> A descriptive title for the property (Required).</li>
+        <li><strong>Description:</strong> A detailed text summary of the property features.</li>
+        <li><strong>Postcode:</strong> The postal code where the property is located.</li>
+        <li><strong>Date Availability:</strong> The date the property becomes available. Defaults to 3 months from today
+          (Required, No Copy).</li>
+        <li><strong>Expected Price:</strong> The initial asking price. Must be greater than 0 (Required).</li>
+        <li><strong>Selling Price:</strong> The final price at which the property was sold (Read-only).</li>
+        <li><strong>Property Type:</strong> A categorization of the property (e.g., House, Apartment).</li>
+        <li><strong>Bedrooms:</strong> Number of bedrooms available. Defaults to 2.</li>
+        <li><strong>Living Area:</strong> The interior living space in square meters.</li>
+        <li><strong>Facades:</strong> The number of exterior faces the building has.</li>
+        <li><strong>Garage:</strong> Indicates if the property includes a garage.</li>
+        <li><strong>Garden:</strong> Indicates if the property has a garden.</li>
+        <li><strong>Garden Area:</strong> The size of the garden in square meters.</li>
+        <li><strong>Garden Orientation:</strong> The direction the garden faces (North, South, East, or West).</li>
+        <li><strong>Total Area:</strong> A calculated field summing the living area and garden area.</li>
+        <li><strong>Status:</strong> The current lifecycle stage of the property (New, Offer Received, Offer Accepted,
+          Sold, or Cancelled). Defaults to "New".</li>
+        <li><strong>Salesperson:</strong> The user responsible for the property. Defaults to the current user.</li>
+        <li><strong>Buyer:</strong> The partner who eventually purchases the property.</li>
+        <li><strong>Tags:</strong> Custom labels used to categorize or filter properties.</li>
+      </ul>
+      <h2>Property Types</h2>
+      <p>The property type of a listing.</p>
+      <ul>
+        <li><strong>Name:</strong> The type of property (Required)</li>
+      </ul>
+
+      <h2>Property Tags</h2>
+      <p>Additional information about a listing that is relevant for a buyer </p>
+      <ul>
+        <li><strong>Name:</strong> An additional piece of information about the property (Required)</li>
+      </ul>
+
+
+      <div class="note-box">
+        <h2>Implementation Notes</h2>
+        <ul>
+          <li><strong>Custom Models:</strong> Create appropriate models, views, and access rights for Properties,
+            Tenancies,
+            and Tenants.</li>
+          <li><strong>Inheritance:</strong> Tenants are <code>res.partner</code> records. Add fields to the Python model
+            and
+            the existing partner form view.</li>
+          <li><strong>Logic:</strong> Tenancies start in <code>draft</code>. Add a button to set to <code>Active</code>
+            only
+            if <code>Date End > Date Start</code>.</li>
+          <li><strong>Automation:</strong> Create an <code>ir.cron</code> scheduled action to check daily if a tenancy
+            has
+            reached its end date.</li>
+          <li><strong>Navigation:</strong> Create a new top-level menu item titled <strong>Realty Management</strong>.
+          </li>
+        </ul>
+      </div>
+
+    </div>
   </div>
   <script src="/odoo-tech-course/assets/js/app.2dc2ca6e.js" defer></script>
   <script src="/odoo-tech-course/assets/js/2.d138bd53.js" defer></script>
@@ -132,71 +198,7 @@
 
 
 
-  <div>
-    <h1>Realty Management - Part 1</h1>
 
-    <p>A Realty management agency has approached your company to implement a property management solution using Odoo.
-      Their requirements are as follows:</p>
-
-    <h2>Properties</h2>
-    <p>The buildings, apartments, and houses to be managed within the real estate module. Properties include the
-      following attributes based on the current system schema:</p>
-    <ul>
-      <li><strong>Name:</strong> A descriptive title for the property (Required).</li>
-      <li><strong>Description:</strong> A detailed text summary of the property features.</li>
-      <li><strong>Postcode:</strong> The postal code where the property is located.</li>
-      <li><strong>Date Availability:</strong> The date the property becomes available. Defaults to 3 months from today
-        (Required, No Copy).</li>
-      <li><strong>Expected Price:</strong> The initial asking price. Must be greater than 0 (Required).</li>
-      <li><strong>Selling Price:</strong> The final price at which the property was sold (Read-only).</li>
-      <li><strong>Property Type:</strong> A categorization of the property (e.g., House, Apartment).</li>
-      <li><strong>Bedrooms:</strong> Number of bedrooms available. Defaults to 2.</li>
-      <li><strong>Living Area:</strong> The interior living space in square meters.</li>
-      <li><strong>Facades:</strong> The number of exterior faces the building has.</li>
-      <li><strong>Garage:</strong> Indicates if the property includes a garage.</li>
-      <li><strong>Garden:</strong> Indicates if the property has a garden.</li>
-      <li><strong>Garden Area:</strong> The size of the garden in square meters.</li>
-      <li><strong>Garden Orientation:</strong> The direction the garden faces (North, South, East, or West).</li>
-      <li><strong>Total Area:</strong> A calculated field summing the living area and garden area.</li>
-      <li><strong>Status:</strong> The current lifecycle stage of the property (New, Offer Received, Offer Accepted,
-        Sold, or Cancelled). Defaults to "New".</li>
-      <li><strong>Salesperson:</strong> The user responsible for the property. Defaults to the current user.</li>
-      <li><strong>Buyer:</strong> The partner who eventually purchases the property.</li>
-      <li><strong>Tags:</strong> Custom labels used to categorize or filter properties.</li>
-    </ul>
-    <h2>Property Types</h2>
-    <p>The property type of a listing.</p>
-    <ul>
-      <li><strong>Name:</strong> The type of property (Required)</li>
-    </ul>
-
-    <h2>Property Tags</h2>
-    <p>Additional information about a listing that is relevant for a buyer </p>
-    <ul>
-      <li><strong>Name:</strong> An additional piece of information about the property (Required)</li>
-    </ul>
-
-
-    <div class="note-box">
-      <h2>Implementation Notes</h2>
-      <ul>
-        <li><strong>Custom Models:</strong> Create appropriate models, views, and access rights for Properties,
-          Tenancies,
-          and Tenants.</li>
-        <li><strong>Inheritance:</strong> Tenants are <code>res.partner</code> records. Add fields to the Python model
-          and
-          the existing partner form view.</li>
-        <li><strong>Logic:</strong> Tenancies start in <code>draft</code>. Add a button to set to <code>Active</code>
-          only
-          if <code>Date End > Date Start</code>.</li>
-        <li><strong>Automation:</strong> Create an <code>ir.cron</code> scheduled action to check daily if a tenancy has
-          reached its end date.</li>
-        <li><strong>Navigation:</strong> Create a new top-level menu item titled <strong>Realty Management</strong>.
-        </li>
-      </ul>
-    </div>
-
-  </div>
 </body>
 
 </html>
