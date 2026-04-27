@@ -4,200 +4,452 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Backend Technical Consultant Onboarding (BTCO)</title>
-  <meta name="generator" content="VuePress 1.8.3">
+  <title>Eagle Estates | BTCO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  <meta name="description" content="Odoo Technical Training">
+    :root {
+      --accent: #3eaf7c;
+      --accent-dark: #2d8a5e;
+      --text: #2c3e50;
+      --text-light: #4e6e8e;
+      --border: #eaecef;
+      --bg: #ffffff;
+      --sidebar-bg: #f8f8f8;
+      --navbar-height: 3.6rem;
+      --sidebar-width: 20rem;
+      --code-bg: #f3f3f3;
+      --note-bg: #f0faf5;
+    }
 
-  <link rel="preload" href="/odoo-tech-course/assets/css/0.styles.82c17a35.css" as="style">
-  <link rel="preload" href="/odoo-tech-course/assets/js/app.2dc2ca6e.js" as="script">
-  <link rel="preload" href="/odoo-tech-course/assets/js/2.d138bd53.js" as="script">
-  <link rel="preload" href="/odoo-tech-course/assets/js/8.e0f1e977.js" as="script">
-  <link rel="prefetch" href="/odoo-tech-course/assets/js/10.a03ded4b.js">
-  <link rel="prefetch" href="/odoo-tech-course/assets/js/11.080c2e7c.js">
-  <link rel="prefetch" href="/odoo-tech-course/assets/js/12.987b09cb.js">
-  <link rel="prefetch" href="/odoo-tech-course/assets/js/13.881b2d09.js">
-  <link rel="prefetch" href="/odoo-tech-course/assets/js/14.95ed3039.js">
-  <link rel="prefetch" href="/odoo-tech-course/assets/js/15.f2d78d2d.js">
-  <link rel="prefetch" href="/odoo-tech-course/assets/js/16.df5019dd.js">
-  <link rel="prefetch" href="/odoo-tech-course/assets/js/17.bdd720e2.js">
-  <link rel="prefetch" href="/odoo-tech-course/assets/js/18.87618319.js">
-  <link rel="prefetch" href="/odoo-tech-course/assets/js/19.770685e3.js">
-  <link rel="prefetch" href="/odoo-tech-course/assets/js/3.0f4d46eb.js">
-  <link rel="prefetch" href="/odoo-tech-course/assets/js/4.4a0415e3.js">
-  <link rel="prefetch" href="/odoo-tech-course/assets/js/5.305fda9f.js">
-  <link rel="prefetch" href="/odoo-tech-course/assets/js/6.5a22d40c.js">
-  <link rel="prefetch" href="/odoo-tech-course/assets/js/7.9428c9d1.js">
-  <link rel="prefetch" href="/odoo-tech-course/assets/js/9.56532dec.js">
-  <link rel="stylesheet" href="/odoo-tech-course/assets/css/0.styles.82c17a35.css">
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--navbar-height);
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 1.5rem;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .navbar .site-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .navbar .nav-right {
+      margin-left: auto;
+      font-size: 0.95rem;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    .sidebar-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      margin-right: 1rem;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .sidebar-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+    }
+
+    /* ── LAYOUT ── */
+    .layout {
+      display: flex;
+      padding-top: var(--navbar-height);
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position: fixed;
+      top: var(--navbar-height);
+      left: 0;
+      bottom: 0;
+      width: var(--sidebar-width);
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      padding: 1.5rem 0;
+      transition: transform 0.25s ease;
+    }
+
+    .sidebar-group-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+      padding: 0.8rem 1.5rem 0.4rem;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar-link {
+      display: block;
+      padding: 0.35rem 1.5rem;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      text-decoration: none;
+      border-left: 3px solid transparent;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+
+    .sidebar-link:hover {
+      color: var(--accent);
+      background: rgba(62, 175, 124, 0.06);
+    }
+
+    .sidebar-link.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: rgba(62, 175, 124, 0.08);
+      font-weight: 600;
+    }
+
+    .sidebar-subgroup {
+      padding-left: 0.75rem;
+    }
+
+    .sidebar-subgroup-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+      padding: 0.5rem 1.5rem 0.25rem;
+      cursor: pointer;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .main {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      min-width: 0;
+    }
+
+    .content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 2.5rem 2.5rem 4rem;
+    }
+
+    /* ── PAGE NAV (top breadcrumb area) ── */
+    .page-nav-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+
+    .page-nav-top a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .page-nav-top a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 2rem 0 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    p {
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      line-height: 1.8;
+      margin-bottom: 0.25rem;
+      color: var(--text);
+    }
+
+    strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    code {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.875em;
+      background: var(--code-bg);
+      color: #476582;
+      padding: 0.18em 0.45em;
+      border-radius: 3px;
+    }
+
+    /* ── NOTE BOX ── */
+    .note-box {
+      background: var(--note-bg);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 1.25rem 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .note-box h2 {
+      font-size: 1.1rem;
+      color: var(--accent-dark);
+      border-bottom: none;
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0;
+    }
+
+    .note-box li {
+      color: #3a5a4a;
+    }
+
+    /* ── PAGE NAV BOTTOM ── */
+    .page-nav-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .page-nav-bottom a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .page-nav-bottom a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      :root {
+        --sidebar-width: 0px;
+      }
+
+      .sidebar {
+        transform: translateX(-100%);
+        width: 280px;
+        z-index: 90;
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .sidebar-toggle {
+        display: flex;
+      }
+
+      .main {
+        margin-left: 0;
+      }
+
+      .content {
+        padding: 1.5rem 1.25rem 3rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <div id="app" data-server-rendered="true">
-    <div class="theme-container">
-      <header class="navbar">
-        <div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img"
-            viewBox="0 0 448 512" class="icon">
-            <path fill="currentColor"
-              d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z">
-            </path>
-          </svg></div> <a href="/odoo-tech-course/" class="home-link router-link-active"><!----> <span
-            class="site-name">Backend Technical Consultant Onboarding (BTCO)</span></a>
-        <div class="links">
-          <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!---->
-          </div>
-          <nav class="nav-links can-hide">
-            <div class="nav-item"><a href="/odoo-tech-course/" class="nav-link">
-                Howdy Partner
-              </a></div> <!---->
-          </nav>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <button class="sidebar-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')"
+      aria-label="Toggle sidebar">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="/odoo-tech-course/" class="site-name">Backend Technical Consultant Onboarding (BTCO)</a>
+    <span class="nav-right">Howdy Partner</span>
+  </header>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <p class="sidebar-group-title">Exercises</p>
+      <ul>
+        <li><a href="/odoo-tech-course/exercises/eagle-estates.html" class="sidebar-link active">Eagle Estates</a></li>
+        <li>
+          <p class="sidebar-subgroup-title">Sally's Flower Shop</p>
+          <ul class="sidebar-subgroup">
+            <li><a href="/odoo-tech-course/exercises/sallys-flower-shop/models.html" class="sidebar-link">Models</a>
+            </li>
+            <li><a href="/odoo-tech-course/exercises/sallys-flower-shop/user-interface.html" class="sidebar-link">User
+                Interface, Inheritance</a></li>
+            <li><a href="/odoo-tech-course/exercises/sallys-flower-shop/actions.html" class="sidebar-link">Actions</a>
+            </li>
+            <li><a href="/odoo-tech-course/exercises/sallys-flower-shop/access-rights.html" class="sidebar-link">Access
+                Rights, Sequences</a></li>
+            <li><a href="/odoo-tech-course/exercises/sallys-flower-shop/qweb-templates.html" class="sidebar-link">QWeb
+                Templates</a></li>
+            <li><a href="/odoo-tech-course/exercises/sallys-flower-shop/reports.html" class="sidebar-link">Reports</a>
+            </li>
+            <li><a href="/odoo-tech-course/exercises/sallys-flower-shop/api-integration.html" class="sidebar-link">API
+                Integration</a></li>
+          </ul>
+        </li>
+        <li><a href="/odoo-tech-course/exercises/gems-education.html" class="sidebar-link">GEMS Education</a></li>
+      </ul>
+
+      <p class="sidebar-group-title" style="margin-top:1rem;">Solutions</p>
+      <ul>
+        <li><a href="/odoo-tech-course/solutions/eagle-estates.html" class="sidebar-link">Eagle Estates</a></li>
+        <li><a href="/odoo-tech-course/solutions/sallys-flower-shop.html" class="sidebar-link">Sally's Flower Shop</a>
+        </li>
+        <li><a href="/odoo-tech-course/solutions/gems-education.html" class="sidebar-link">GEMS Education</a></li>
+      </ul>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <div class="content">
+
+        <!-- TOP NAV -->
+        <div class="page-nav-top">
+          <a href="./eagle-estates-part-1.html">← Go to Activity 1</a>
+          <a href="/odoo-tech-course/exercises/sallys-flower-shop/models.html">Models →</a>
         </div>
-      </header>
-      <div class="sidebar-mask"></div>
-      <aside class="sidebar">
-        <nav class="nav-links">
-          <div class="nav-item"><a href="/odoo-tech-course/" class="nav-link">
-              Howdy Partner
-            </a></div> <!---->
-        </nav>
-        <ul class="sidebar-links">
-          <li>
-            <section class="sidebar-group depth-0">
-              <p class="sidebar-heading open"><span>Exercises</span> <!----></p>
-              <ul class="sidebar-links sidebar-group-items">
-                <li><a href="/odoo-tech-course/exercises/eagle-estates.html" aria-current="page"
-                    class="active sidebar-link">Eagle Estates</a></li>
-                <li>
-                  <section class="sidebar-group is-sub-group depth-1">
-                    <p class="sidebar-heading"><span>Sally's Flower Shop</span> <!----></p>
-                    <ul class="sidebar-links sidebar-group-items">
-                      <li><a href="/odoo-tech-course/exercises/sallys-flower-shop/models.html"
-                          class="sidebar-link">Models</a></li>
-                      <li><a href="/odoo-tech-course/exercises/sallys-flower-shop/user-interface.html"
-                          class="sidebar-link">User Interface, Inheritance</a></li>
-                      <li><a href="/odoo-tech-course/exercises/sallys-flower-shop/actions.html"
-                          class="sidebar-link">Actions</a></li>
-                      <li><a href="/odoo-tech-course/exercises/sallys-flower-shop/access-rights.html"
-                          class="sidebar-link">Access Rights, Sequences</a></li>
-                      <li><a href="/odoo-tech-course/exercises/sallys-flower-shop/qweb-templates.html"
-                          class="sidebar-link">QWeb Templates</a></li>
-                      <li><a href="/odoo-tech-course/exercises/sallys-flower-shop/reports.html"
-                          class="sidebar-link">Reports</a></li>
-                      <li><a href="/odoo-tech-course/exercises/sallys-flower-shop/api-integration.html"
-                          class="sidebar-link">API Integration</a></li>
-                    </ul>
-                  </section>
-                </li>
-                <li><a href="/odoo-tech-course/exercises/gems-education.html" class="sidebar-link">GEMS Education</a>
-                </li>
-              </ul>
-            </section>
-          </li>
-          <li>
-            <section class="sidebar-group depth-0">
-              <p class="sidebar-heading"><span>Solutions</span> <!----></p>
-              <ul class="sidebar-links sidebar-group-items">
-                <li><a href="/odoo-tech-course/solutions/eagle-estates.html" class="sidebar-link">Eagle Estates</a></li>
-                <li><a href="/odoo-tech-course/solutions/sallys-flower-shop.html" class="sidebar-link">Sally's Flower
-                    Shop</a></li>
-                <li><a href="/odoo-tech-course/solutions/gems-education.html" class="sidebar-link">GEMS Education</a>
-                </li>
-              </ul>
-            </section>
-          </li>
-        </ul>
-      </aside>
-      <main class="page">
-        <div class="theme-default-content content__default"></div>
-        <footer class="page-edit"><!----> <!----></footer>
-        <div class="page-nav">
-          <p class="inner"><!----> <span class="next"><a
-                href="/odoo-tech-course/exercises/sallys-flower-shop/models.html">
-                Models
-              </a>
-              →
-            </span></p>
-        </div>
-      </main>
-    </div>
-    <div class="global-ui"></div>
-    <div>
-      <h1>Realty Management - Part 1</h1>
 
-      <p>A Realty management agency has approached your company to implement a property management solution using Odoo.
-        Their requirements are as follows:</p>
+        <!-- PAGE CONTENT -->
+        <h1>Realty Management - Part 1</h1>
+        <p>A Realty management agency has approached your company to implement a property management solution using
+          Odoo.
+          Their requirements are as follows:</p>
 
-      <h2>Properties</h2>
-      <p>The buildings, apartments, and houses to be managed within the real estate module. Properties include the
-        following attributes based on the current system schema:</p>
-      <ul>
-        <li><strong>Name:</strong> A descriptive title for the property (Required).</li>
-        <li><strong>Description:</strong> A detailed text summary of the property features.</li>
-        <li><strong>Postcode:</strong> The postal code where the property is located.</li>
-        <li><strong>Date Availability:</strong> The date the property becomes available. Defaults to 3 months from today
-          (Required, No Copy).</li>
-        <li><strong>Expected Price:</strong> The initial asking price. Must be greater than 0 (Required).</li>
-        <li><strong>Selling Price:</strong> The final price at which the property was sold (Read-only).</li>
-        <li><strong>Property Type:</strong> A categorization of the property (e.g., House, Apartment).</li>
-        <li><strong>Bedrooms:</strong> Number of bedrooms available. Defaults to 2.</li>
-        <li><strong>Living Area:</strong> The interior living space in square meters.</li>
-        <li><strong>Facades:</strong> The number of exterior faces the building has.</li>
-        <li><strong>Garage:</strong> Indicates if the property includes a garage.</li>
-        <li><strong>Garden:</strong> Indicates if the property has a garden.</li>
-        <li><strong>Garden Area:</strong> The size of the garden in square meters.</li>
-        <li><strong>Garden Orientation:</strong> The direction the garden faces (North, South, East, or West).</li>
-        <li><strong>Total Area:</strong> A calculated field summing the living area and garden area.</li>
-        <li><strong>Status:</strong> The current lifecycle stage of the property (New, Offer Received, Offer Accepted,
-          Sold, or Cancelled). Defaults to "New".</li>
-        <li><strong>Salesperson:</strong> The user responsible for the property. Defaults to the current user.</li>
-        <li><strong>Buyer:</strong> The partner who eventually purchases the property.</li>
-        <li><strong>Tags:</strong> Custom labels used to categorize or filter properties.</li>
-      </ul>
-      <h2>Property Types</h2>
-      <p>The property type of a listing.</p>
-      <ul>
-        <li><strong>Name:</strong> The type of property (Required)</li>
-      </ul>
-
-      <h2>Property Tags</h2>
-      <p>Additional information about a listing that is relevant for a buyer </p>
-      <ul>
-        <li><strong>Name:</strong> An additional piece of information about the property (Required)</li>
-      </ul>
-
-
-      <div class="note-box">
-        <h2>Implementation Notes</h2>
+        <h2>Properties</h2>
+        <p>The buildings, apartments, and houses to be managed within the real estate module. Properties include the
+          following attributes based on the current system schema:</p>
         <ul>
-          <li><strong>Custom Models:</strong> Create appropriate models, views, and access rights for Properties,
-            Tenancies,
-            and Tenants.</li>
-          <li><strong>Inheritance:</strong> Tenants are <code>res.partner</code> records. Add fields to the Python model
-            and
-            the existing partner form view.</li>
-          <li><strong>Logic:</strong> Tenancies start in <code>draft</code>. Add a button to set to <code>Active</code>
-            only
-            if <code>Date End > Date Start</code>.</li>
-          <li><strong>Automation:</strong> Create an <code>ir.cron</code> scheduled action to check daily if a tenancy
-            has
-            reached its end date.</li>
-          <li><strong>Navigation:</strong> Create a new top-level menu item titled <strong>Realty Management</strong>.
-          </li>
+          <li><strong>Name:</strong> A descriptive title for the property (Required).</li>
+          <li><strong>Description:</strong> A detailed text summary of the property features.</li>
+          <li><strong>Postcode:</strong> The postal code where the property is located.</li>
+          <li><strong>Date Availability:</strong> The date the property becomes available. Defaults to 3 months from
+            today
+            (Required, No Copy).</li>
+          <li><strong>Expected Price:</strong> The initial asking price. Must be greater than 0 (Required).</li>
+          <li><strong>Selling Price:</strong> The final price at which the property was sold (Read-only).</li>
+          <li><strong>Property Type:</strong> A categorization of the property (e.g., House, Apartment).</li>
+          <li><strong>Bedrooms:</strong> Number of bedrooms available. Defaults to 2.</li>
+          <li><strong>Living Area:</strong> The interior living space in square meters.</li>
+          <li><strong>Facades:</strong> The number of exterior faces the building has.</li>
+          <li><strong>Garage:</strong> Indicates if the property includes a garage.</li>
+          <li><strong>Garden:</strong> Indicates if the property has a garden.</li>
+          <li><strong>Garden Area:</strong> The size of the garden in square meters.</li>
+          <li><strong>Garden Orientation:</strong> The direction the garden faces (North, South, East, or West).</li>
+          <li><strong>Total Area:</strong> A calculated field summing the living area and garden area.</li>
+          <li><strong>Status:</strong> The current lifecycle stage of the property (New, Offer Received, Offer Accepted,
+            Sold, or Cancelled). Defaults to "New".</li>
+          <li><strong>Salesperson:</strong> The user responsible for the property. Defaults to the current user.</li>
+          <li><strong>Buyer:</strong> The partner who eventually purchases the property.</li>
+          <li><strong>Tags:</strong> Custom labels used to categorize or filter properties.</li>
         </ul>
+
+        <h2>Property Types</h2>
+        <p>The property type of a listing.</p>
+        <ul>
+          <li><strong>Name:</strong> The type of property (Required).</li>
+        </ul>
+
+        <h2>Property Tags</h2>
+        <p>Additional information about a listing that is relevant for a buyer.</p>
+        <ul>
+          <li><strong>Name:</strong> An additional piece of information about the property (Required).</li>
+        </ul>
+
+        <div class="note-box">
+          <h2>Implementation Notes</h2>
+          <ul>
+            <li><strong>Custom Models:</strong> Create appropriate models, views, and access rights for Properties,
+              Tenancies, and Tenants.</li>
+            <li><strong>Inheritance:</strong> Tenants are <code>res.partner</code> records. Add fields to the Python
+              model and the existing partner form view.</li>
+            <li><strong>Logic:</strong> Tenancies start in <code>draft</code>. Add a button to set to
+              <code>Active</code> only if <code>Date End &gt; Date Start</code>.
+            </li>
+            <li><strong>Automation:</strong> Create an <code>ir.cron</code> scheduled action to check daily if a
+              tenancy has reached its end date.</li>
+            <li><strong>Navigation:</strong> Create a new top-level menu item titled <strong>Realty Management</strong>.
+            </li>
+          </ul>
+        </div>
+
+        <!-- BOTTOM NAV -->
+        <div class="page-nav-bottom">
+          <a href="./eagle-estates-part-1.html">← Go to Activity 1</a>
+          <a href="/odoo-tech-course/exercises/sallys-flower-shop/models.html">Models →</a>
+        </div>
+
       </div>
+    </main>
 
-    </div>
   </div>
-  <script src="/odoo-tech-course/assets/js/app.2dc2ca6e.js" defer></script>
-  <script src="/odoo-tech-course/assets/js/2.d138bd53.js" defer></script>
-  <script src="/odoo-tech-course/assets/js/8.e0f1e977.js" defer></script>
-
-  <nav>
-    <a href="./eagle-estates-part-1.html" class="nav-link">← Go to Activity 1</a>
-  </nav>
-
-
-
 
 </body>
 
