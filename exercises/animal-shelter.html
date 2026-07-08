@@ -342,26 +342,16 @@
                 <section class="sidebar-group is-sub-group depth-1">
                   <p class="sidebar-heading"><span>Eagle Estates</span></p>
                   <ul class="sidebar-links sidebar-group-items">
-                    <li><a href="./eagle-estates-part-1.html"
-                        class="sidebar-link">Activity 1</a></li>
-                    <li><a href=./eagle-estates-part-2.html"
-                        class="sidebar-link">Activity 2</a></li>
-                    <li><a href="./eagle-estates-part-3.html"
-                        class="sidebar-link">Activity 3</a></li>
-                    <li><a href="./eagle-estates-part-4.html"
-                        class="sidebar-link">Activity 4</a></li>
-                    <li><a href="./eagle-estates-part-5.html"
-                        class="sidebar-link">Activity 5</a></li>
-                    <li><a href="./eagle-estates-part-6.html"
-                        class="sidebar-link">Activity 6</a></li>
-                    <li><a href="./eagle-estates-part-7.html"
-                        class="sidebar-link">Activity 7</a></li>
-                    <li><a href="./eagle-estates-part-8.html"
-                        class="sidebar-link">Activity 8</a></li>
-                    <li><a href="./eagle-estates-part-9.html"
-                        class="sidebar-link">Activity 9</a></li>
-                    <li><a href="./eagle-estates-part-10.html"
-                        class="sidebar-link">Activity 10</a></li>
+                    <li><a href="./animal-shelter-part-1.html" class="sidebar-link">Activity 1</a></li>
+                    <li><a href=./animal-shelter-part-2.html" class="sidebar-link">Activity 2</a></li>
+                    <li><a href="./animal-shelter-part-3.html" class="sidebar-link">Activity 3</a></li>
+                    <li><a href="./animal-shelter-part-4.html" class="sidebar-link">Activity 4</a></li>
+                    <li><a href="./animal-shelter-part-5.html" class="sidebar-link">Activity 5</a></li>
+                    <li><a href="./animal-shelter-part-6.html" class="sidebar-link">Activity 6</a></li>
+                    <li><a href="./animal-shelter-part-7.html" class="sidebar-link">Activity 7</a></li>
+                    <li><a href="./animal-shelter-part-8.html" class="sidebar-link">Activity 8</a></li>
+                    <li><a href="./animal-shelter-part-9.html" class="sidebar-link">Activity 9</a></li>
+                    <li><a href="./animal-shelter-part-10.html" class="sidebar-link">Activity 10</a></li>
                   </ul>
                 </section>
               </li>
@@ -372,7 +362,7 @@
           <section class="sidebar-group depth-0">
             <p class="sidebar-heading"><span>Solutions</span></p>
             <ul class="sidebar-links sidebar-group-items">
-              <li><a href="/odoo-tech-course/solutions/eagle-estates.html" class="sidebar-link">Eagle Estates</a></li>
+              <li><a href="/odoo-tech-course/solutions/animal-shelter.html" class="sidebar-link">Eagle Estates</a></li>
             </ul>
           </section>
         </li>
@@ -380,10 +370,10 @@
 
       <p class="sidebar-group-title" style="margin-top:1rem;">Solutions</p>
       <ul>
-        <li><a href="/odoo-tech-course/solutions/eagle-estates.html" class="sidebar-link">Eagle Estates</a></li>
-        
+        <li><a href="/odoo-tech-course/solutions/animal-shelter.html" class="sidebar-link">Eagle Estates</a></li>
+
         </li>
-       
+
       </ul>
     </aside>
 
@@ -393,76 +383,82 @@
 
         <!-- TOP NAV -->
         <div class="page-nav-top">
-          <a href="./eagle-estates-part-1.html">← Go to Activity 1</a>
+          <a href="./animal-shelter-part-1.html">← Go to Activity 1</a>
           <a href="/odoo-tech-course/exercises/sallys-flower-shop/models.html">Models →</a>
         </div>
 
         <!-- PAGE CONTENT -->
-        <h1>Realty Management - Part 1</h1>
-        <p>A Realty management agency has approached your company to implement a property management solution using
-          Odoo.
-          Their requirements are as follows:</p>
+        <h1>Animal Shelter Management</h1>
+        <p>An animal rescue and rehabilitation center has approached your company to implement a shelter management
+          solution using Odoo. Their requirements are as follows:</p>
 
-        <h2>Properties</h2>
-        <p>The buildings, apartments, and houses to be managed within the real estate module. Properties include the
+        <h2>Animals</h2>
+        <p>The rescued, rehabilitated, and resident animals to be managed within the shelter module. Animals include the
           following attributes based on the current system schema:</p>
         <ul>
-          <li><strong>Name:</strong> A descriptive title for the property (Required).</li>
-          <li><strong>Description:</strong> A detailed text summary of the property features.</li>
-          <li><strong>Postcode:</strong> The postal code where the property is located.</li>
-          <li><strong>Date Availability:</strong> The date the property becomes available. Defaults to 3 months from
-            today
-            (Required, No Copy).</li>
-          <li><strong>Expected Price:</strong> The initial asking price. Must be greater than 0 (Required).</li>
-          <li><strong>Selling Price:</strong> The final price at which the property was sold (Read-only).</li>
-          <li><strong>Property Type:</strong> A categorization of the property (e.g., House, Apartment).</li>
-          <li><strong>Bedrooms:</strong> Number of bedrooms available. Defaults to 2.</li>
-          <li><strong>Living Area:</strong> The interior living space in square meters.</li>
-          <li><strong>Facades:</strong> The number of exterior faces the building has.</li>
-          <li><strong>Garage:</strong> Indicates if the property includes a garage.</li>
-          <li><strong>Garden:</strong> Indicates if the property has a garden.</li>
-          <li><strong>Garden Area:</strong> The size of the garden in square meters.</li>
-          <li><strong>Garden Orientation:</strong> The direction the garden faces (North, South, East, or West).</li>
-          <li><strong>Total Area:</strong> A calculated field summing the living area and garden area.</li>
-          <li><strong>Status:</strong> The current lifecycle stage of the property (New, Offer Received, Offer Accepted,
-            Sold, or Cancelled). Defaults to "New".</li>
-          <li><strong>Salesperson:</strong> The user responsible for the property. Defaults to the current user.</li>
-          <li><strong>Buyer:</strong> The partner who eventually purchases the property.</li>
-          <li><strong>Tags:</strong> Custom labels used to categorize or filter properties.</li>
+          <li><strong>Nickname:</strong> A descriptive name for the individual animal (Required).</li>
+          <li><strong>Picture:</strong> An image upload field for the animal's profile (Max dimensions: 500x500 pixels).
+          </li>
+          <li><strong>Birth Date:</strong> The estimated or known date of birth for the animal.</li>
+          <li><strong>Description:</strong> A detailed text summary of the animal's history, behavior, or special needs.
+          </li>
+          <li><strong>Gender:</strong> The sex of the animal (Male or Female, Required).</li>
+          <li><strong>Weight:</strong> The current weight of the animal.</li>
+          <li><strong>Arrival Time:</strong> The precise date and time the animal was admitted to the center.</li>
+          <li><strong>Status:</strong> The current lifecycle stage of the animal (Not Received, At The Center, or
+            Released). Defaults to "Not Received".</li>
+          <li><strong>Is Vaccinated:</strong> A checkbox indicating vaccination status. Defaults to True.</li>
+          <li><strong>Diet:</strong> The dietary classification of the animal (Herbivore, Carnivore, or Omnivore).</li>
+          <li><strong>Animal Type:</strong> A categorization linking the animal to a specific species group (e.g.,
+            Canine, Feline, Raptor).</li>
+          <li><strong>Feeding Time:</strong> The scheduled daily time for feeding the animal.</li>
+          <li><strong>Vaccines:</strong> A list of medical vaccines administered to the animal.</li>
+          <li><strong>Permitted Release Countries:</strong> A list of target geographical regions where the animal is
+            legally allowed to be re-introduced or adopted.</li>
+          <li><strong>Location:</strong> The specific pen, enclosure, or wing within the facility where the animal is
+            housed.</li>
+          <li><strong>Sponsor:</strong> The external partner (individual or corporate donor) sponsoring the animal’s
+            care.</li>
+          <li><strong>Assigned Vet:</strong> The internal staff veterinarian responsible for the animal’s health.</li>
+          <li><strong>Vet Phone:</strong> A read-only field automatically pulling the assigned veterinarian's work phone
+            number.</li>
+          <li><strong>Final Released Country:</strong> The specific country where the animal was successfully released
+            or adopted.</li>
         </ul>
 
-        <h2>Property Types</h2>
-        <p>The property type of a listing.</p>
+        <h2>Animal Types</h2>
+        <p>The species of an animal</p>
         <ul>
-          <li><strong>Name:</strong> The type of property (Required).</li>
+          <li><strong>Name:</strong> The species category or type name (Required).</li>
         </ul>
 
-        <h2>Property Tags</h2>
-        <p>Additional information about a listing that is relevant for a buyer.</p>
+        <h2>Animal Vaccines</h2>
+        <p>Medical records of preventative treatments available.</p>
         <ul>
-          <li><strong>Name:</strong> An additional piece of information about the property (Required).</li>
+          <li><strong>Name:</strong> The name of the specific vaccine (Required).</li>
         </ul>
 
         <div class="note-box">
           <h2>Implementation Notes</h2>
           <ul>
-            <li><strong>Custom Models:</strong> Create appropriate models, views, and access rights for Properties,
-              Tenancies, and Tenants.</li>
-            <li><strong>Inheritance:</strong> Tenants are <code>res.partner</code> records. Add fields to the Python
-              model and the existing partner form view.</li>
-            <li><strong>Logic:</strong> Tenancies start in <code>draft</code>. Add a button to set to
-              <code>Active</code> only if <code>Date End &gt; Date Start</code>.
+            <li><strong>Custom Models:</strong> Create appropriate models, views, and access rights for Animals, Animal
+              Types, Animal Locations and Shelters. Ensure proper relational fields (Many2one, Many2many) are
+              established between them.</li>
+            <li><strong>Inheritance:</strong> Sponsors are <code>res.partner</code> records. Vets are existing shelter
+              employees linked to <code>hr.employee</code> with a related field to fetch their work phone automatically.
             </li>
-            <li><strong>Automation:</strong> Create an <code>ir.cron</code> scheduled action to check daily if a
-              tenancy has reached its end date.</li>
-            <li><strong>Navigation:</strong> Create a new top-level menu item titled <strong>Realty Management</strong>.
-            </li>
+            <li><strong>Logic &amp; Constraints:</strong> Implement a Python constraint (<code>@api.constrains</code>)
+              ensuring neither the Permitted Release Countries nor the Final Released Country can include "Belgium". Add
+              header buttons on the form view to trigger manual state changes to <code>At The Center</code> and
+              <code>Released</code>.</li>
+            <li><strong>Navigation:</strong> Create a new top-level menu item titled <strong>Shelter Management</strong>
+              with appropriate sub-menus for managing animals, species types, and facility locations.</li>
           </ul>
         </div>
 
         <!-- BOTTOM NAV -->
         <div class="page-nav-bottom">
-          <a href="./eagle-estates-part-1.html">← Go to Activity 1</a>
+          <a href="./animal-shelter-part-1.html">← Go to Activity 1</a>
           <a href="/odoo-tech-course/exercises/sallys-flower-shop/models.html">Models →</a>
         </div>
 
