@@ -372,20 +372,24 @@ Copy
                 <!-- PAGE CONTENT -->
                 <h1>Animal Shelter — Activity 9</h1>
                 <div>
-                    <p> In the newly created model eagle.property, add the following fields:
+                    <p> It is time to extend the res.partner model to include two new fields:
                     <ul>
                         <li>
-                            A mandatory name field.
+                            is_sponsor - a boolean field to indicate whether they are a sponsor or not
                         </li>
                         <li>
-                            A mandatory date field for the construction date, and ensure that it sets today's date by
-                            default.
-                        </li>
-                        <li>
-                            A numeric field to store the area in square meters.
+                            shelter_location_id - a Many2one that links to animal location
                         </li>
                     </ul>
 
+                    </p>
+                    <p>
+                        We will also extend the hr.employee table to include the following field:
+                        <ul>
+                            <li>
+                                shelter_location_id - a Many2one that links to animal location
+                            </li>
+                        </ul>
                     </p>
                 </div>
 

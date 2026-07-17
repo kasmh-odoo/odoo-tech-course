@@ -450,16 +450,10 @@
         <div class="note-box">
           <h2>Implementation Notes</h2>
           <ul>
-            <li><strong>Custom Models:</strong> Create appropriate models, views, and access rights for Properties,
-              Tenancies, and Tenants.</li>
-            <li><strong>Inheritance:</strong> Tenants are <code>res.partner</code> records. Add fields to the Python
-              model and the existing partner form view.</li>
-            <li><strong>Logic:</strong> Tenancies start in <code>draft</code>. Add a button to set to
-              <code>Active</code> only if <code>Date End &gt; Date Start</code>.
-            </li>
-            <li><strong>Automation:</strong> Create an <code>ir.cron</code> scheduled action to check daily if a
-              tenancy has reached its end date.</li>
-            <li><strong>Navigation:</strong> Create a new top-level menu item titled <strong>Realty Management</strong>.
+            <li><strong>Custom Models:</strong> Create appropriate models, views, and access rights for Animals, Animal Types, Animal Locations and Animal Vaccines.</li>
+            <li><strong>Inheritance:</strong> Vet sponsors are <code>res.partner</code> records. The vets are <code> hr.employee </code> records. Add fields to these Python
+              models and their existing form views.</li>
+            <li><strong>Navigation:</strong> Create a new top-level menu item titled <strong>Animal Shelter</strong>.
             </li>
           </ul>
         </div>
