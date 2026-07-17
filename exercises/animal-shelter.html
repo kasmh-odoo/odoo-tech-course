@@ -438,6 +438,13 @@
           <li><strong>Name:</strong> The name of the specific vaccine (Required).</li>
         </ul>
 
+        <h2>Animal Locations</h2>
+        <p>The specific pen, enclosure, or wing within the facility where the animal is
+            housed.</p>
+        <ul>
+          <li><strong>Name:</strong> The name of the specific location (Required).</li>
+        </ul>
+
         <div class="note-box">
           <h2>Implementation Notes</h2>
           <ul>
@@ -450,7 +457,8 @@
             <li><strong>Logic &amp; Constraints:</strong> Implement a Python constraint (<code>@api.constrains</code>)
               ensuring neither the Permitted Release Countries nor the Final Released Country can include "Belgium". Add
               header buttons on the form view to trigger manual state changes to <code>At The Center</code> and
-              <code>Released</code>.</li>
+              <code>Released</code>.
+            </li>
             <li><strong>Navigation:</strong> Create a new top-level menu item titled <strong>Shelter Management</strong>
               with appropriate sub-menus for managing animals, species types, and facility locations.</li>
           </ul>
