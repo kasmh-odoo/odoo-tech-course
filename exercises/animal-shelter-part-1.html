@@ -371,10 +371,21 @@ Copy
                         this module Animal Shelter. Furthermore, we have to do the following:
                     <ul>
                         <li>
-                            Create a new model to manage all the animals in the shelter.
-                        </li>
-                        <li>
-                            Ensure to create any/all other necessary files for the module.
+                           Create three folders in this module - models, views and security. Also create and __init__.py and a __manifest__.py.
+                            <ul>
+                                <li>
+                                    Under the models folder, create an __init__.py.
+                                </li>
+                                <li>
+                                    Under the security folder, add a file named ir.model.access.csv. This file will contain the access rights for the models we create.
+                                </li>
+                                <li>
+                                    The root __init__.py should import the models folder.
+                                </li>
+                                <li>
+                                    The __manifest__.py should have the name of the application, its dependencies (for now it only depends on the base Odoo module), and specify whether it is an application or not.
+                                </li>
+                            </ul>
                         </li>
                     </ul>
 
