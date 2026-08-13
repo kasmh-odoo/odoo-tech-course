@@ -367,25 +367,27 @@ Copy
                 <!-- PAGE CONTENT -->
                 <h1>Animal Shelter — Activity 3</h1>
                 <div>
-                    
+
                     <p> The animals model needs views to visualize its records. Here is a list of things to do:
                     <ul>
                         <li>
-                            Create an xml file called animals_views.xml. 
+                            Create an XML file called animals_views.xml.
                         </li>
                         <li>
-                            Create a list view and a form view for the animals in this file (refer to the slides for an example!)
+                            Create a list view and a form view for the animals in this file (refer to the slides for an
+                            example!)
                         </li>
                         <li>
-                            Display the model's fields in these views.
+                            Display the model's fields in these views. Use the group tags in the form views to ensure
+                            that the labels for these fields are displayed.
                         </li>
                     </ul>
                     </p>
-                    <p> The new module should appear in the apps list as an icon. To achieve this, we have to do the
+                    <p> The new module should appear in the apps list. To achieve this, we have to do the
                         following:
                     <ul>
                         <li>
-                            Create an xml file called animals_menus.xml under the views folder.
+                            Create an XML file called animals_menus.xml under the views folder.
                         </li>
                         <li>
                             Add a root menu item for the module Animal Shelter.
@@ -399,7 +401,8 @@ Copy
                     <p> Menu items do not function without actions. In this part, we have to:
                     <ul>
                         <li>
-                            Add a window action for accessing the views of the animals model. Create this action in animals_views.xml.
+                            Add a window action for accessing the views of the animals model. Create this action in
+                            animals_views.xml.
                         </li>
                         <li>
                             Link the action to the menu item.
@@ -407,11 +410,24 @@ Copy
                     </ul>
 
                     </p>
+                    <p> We need to update our __manifest__.py when we add new XML files.
+                        <li>
+                            In <code>__manifest__.py</code>, update the <code>'data'</code> list with the relative file
+                            paths in this exact loading order:
+                            <ol type="a">
+                                <li>Security rules (e.g., <code>'security/ir.model.access.csv'</code>)</li>
+                                <li>View architecture (e.g., <code>'views/animal_views.xml'</code>)</li>
+                                <li>Menu structure (e.g., <code>'views/animal_menus.xml'</code>)</li>
+                            </ol>
+                        </li>
+                        <li>Always include the directory name (<code>security/</code> or <code>views/</code>) in the
+                            path string so Odoo can locate the files.</li>
+                    </p>
                 </div>
 
                 <!-- BOTTOM NAV -->
                 <div class="page-nav-bottom">
-                     <a href="./animal-shelter-part-2.html">← Back to Activity 2</a>
+                    <a href="./animal-shelter-part-2.html">← Back to Activity 2</a>
                     <a href="./animal-shelter-part-4.html">Activity 4 →</a>
                 </div>
 
