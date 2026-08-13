@@ -368,8 +368,21 @@ Copy
                 <h1>Animal Shelter — Activity 10</h1>
                 <div>
                     <p> We will now extend our hr.employee form to include the <b> shelter_location_id before the notebook.</b>
+                        To do this, you can follow this outline:
+                        <ul>
+                            <li> Create an XML file called hr_employee_views.xml under the views folder.</li>
+                            <li> The form view here should inherit the base employee form view (hr.hr_employee_view_form).</li>
+                            <li> Use an <xpath> expression targeting the notebook element (//notebook).</li>
+                            <li> Insert the shelter_location_id field before the notebook using position="before".</li>
+                        </ul>
                     </p>
-                    <p> In the res.partner form, we will also add the <b> is_sponsor field before the notebook.</b></p>
+                    <p> In the res.partner form, we will also add the <b> is_sponsor field before the notebook.</b>To do this, you can follow this outline:
+                        <ul>
+                            <li> Create an XML file called res_partner_views.xml under the views folder.</li>
+                            <li> The form view here should inherit the standard contact form view (base.view_partner_form).</li>
+                            <li> Use an <xpath> expression targeting the notebook element (//notebook).</li>
+                            <li> Insert the shelter_location_id field before the notebook using position="before".</li>
+                        </ul></p>
                 </div>
 
                 <!-- BOTTOM NAV -->
