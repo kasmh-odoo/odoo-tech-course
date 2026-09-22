@@ -1,463 +1,486 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Animal Shelter</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Animal Shelter </title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    :root {
-      --accent: #3eaf7c;
-      --accent-dark: #2d8a5e;
-      --text: #2c3e50;
-      --text-light: #4e6e8e;
-      --border: #eaecef;
-      --bg: #ffffff;
-      --sidebar-bg: #f8f8f8;
-      --navbar-height: 3.6rem;
-      --sidebar-width: 20rem;
-      --code-bg: #f3f3f3;
-      --note-bg: #f0faf5;
-    }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 16px;
-      color: var(--text);
-      background: var(--bg);
-    }
-
-    /* ── NAVBAR ── */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: var(--navbar-height);
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      padding: 0 1.5rem;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    }
-
-    .navbar .site-name {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    .navbar .nav-right {
-      margin-left: auto;
-      font-size: 0.95rem;
-      color: var(--text-light);
-      font-weight: 500;
-    }
-
-    .sidebar-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      margin-right: 1rem;
-      background: none;
-      border: none;
-      padding: 4px;
-    }
-
-    .sidebar-toggle span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--text);
-      border-radius: 2px;
-    }
-
-    /* ── LAYOUT ── */
-    .layout {
-      display: flex;
-      padding-top: var(--navbar-height);
-      min-height: 100vh;
-    }
-
-    /* ── SIDEBAR ── */
-    .sidebar {
-      position: fixed;
-      top: var(--navbar-height);
-      left: 0;
-      bottom: 0;
-      width: var(--sidebar-width);
-      background: var(--sidebar-bg);
-      border-right: 1px solid var(--border);
-      overflow-y: auto;
-      padding: 1.5rem 0;
-      transition: transform 0.25s ease;
-    }
-
-    .sidebar-group-title {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-light);
-      padding: 0.8rem 1.5rem 0.4rem;
-    }
-
-    .sidebar ul {
-      list-style: none;
-    }
-
-    .sidebar-link {
-      display: block;
-      padding: 0.35rem 1.5rem;
-      font-size: 0.9rem;
-      color: var(--text-light);
-      text-decoration: none;
-      border-left: 3px solid transparent;
-      transition: color 0.15s, border-color 0.15s, background 0.15s;
-    }
-
-    .sidebar-link:hover {
-      color: var(--accent);
-      background: rgba(62, 175, 124, 0.06);
-    }
-
-    .sidebar-link.active {
-      color: var(--accent);
-      border-left-color: var(--accent);
-      background: rgba(62, 175, 124, 0.08);
-      font-weight: 600;
-    }
-
-    .sidebar-subgroup {
-      padding-left: 0.75rem;
-    }
-
-    .sidebar-subgroup-title {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text);
-      padding: 0.5rem 1.5rem 0.25rem;
-      cursor: pointer;
-    }
-
-    /* ── MAIN CONTENT ── */
-    .main {
-      margin-left: var(--sidebar-width);
-      flex: 1;
-      min-width: 0;
-    }
-
-    .content {
-      max-width: 780px;
-      margin: 0 auto;
-      padding: 2.5rem 2.5rem 4rem;
-    }
-
-    /* ── PAGE NAV (top breadcrumb area) ── */
-    .page-nav-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 2rem;
-    }
-
-    .page-nav-top a {
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    .page-nav-top a:hover {
-      text-decoration: underline;
-    }
-
-    /* ── TYPOGRAPHY ── */
-    h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 1rem;
-      line-height: 1.3;
-    }
-
-    h2 {
-      font-size: 1.35rem;
-      font-weight: 600;
-      color: var(--text);
-      margin: 2rem 0 0.75rem;
-      padding-bottom: 0.4rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    p {
-      line-height: 1.75;
-      color: var(--text);
-      margin-bottom: 1rem;
-    }
-
-    ul {
-      padding-left: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    li {
-      line-height: 1.8;
-      margin-bottom: 0.25rem;
-      color: var(--text);
-    }
-
-    strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    code {
-      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-      font-size: 0.875em;
-      background: var(--code-bg);
-      color: #476582;
-      padding: 0.18em 0.45em;
-      border-radius: 3px;
-    }
-
-    /* ── NOTE BOX ── */
-    .note-box {
-      background: var(--note-bg);
-      border-left: 4px solid var(--accent);
-      border-radius: 0 6px 6px 0;
-      padding: 1.25rem 1.5rem;
-      margin-top: 2.5rem;
-    }
-
-    .note-box h2 {
-      font-size: 1.1rem;
-      color: var(--accent-dark);
-      border-bottom: none;
-      margin-top: 0;
-      margin-bottom: 0.75rem;
-      padding-bottom: 0;
-    }
-
-    .note-box li {
-      color: #3a5a4a;
-    }
-
-    /* ── PAGE NAV BOTTOM ── */
-    .page-nav-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .page-nav-bottom a {
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .page-nav-bottom a:hover {
-      text-decoration: underline;
-    }
-
-    /* ── MOBILE ── */
-    @media (max-width: 768px) {
       :root {
-        --sidebar-width: 0px;
+        --accent: #3eaf7c;
+        --accent-dark: #2d8a5e;
+        --text: #2c3e50;
+        --text-light: #4e6e8e;
+        --border: #eaecef;
+        --bg: #ffffff;
+        --sidebar-bg: #f8f8f8;
+        --navbar-height: 3.6rem;
+        --sidebar-width: 20rem;
+        --code-bg: #f3f3f3;
+        --note-bg: #f0faf5;
       }
 
-      .sidebar {
-        transform: translateX(-100%);
-        width: 280px;
-        z-index: 90;
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        font-size: 16px;
+        color: var(--text);
+        background: var(--bg);
       }
 
-      .sidebar.open {
-        transform: translateX(0);
+      /* ── NAVBAR ── */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--navbar-height);
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        padding: 0 1.5rem;
+        z-index: 100;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+
+      .navbar .site-name {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text);
+        text-decoration: none;
+      }
+
+      .navbar .nav-right {
+        margin-left: auto;
+        font-size: 0.95rem;
+        color: var(--text-light);
+        font-weight: 500;
       }
 
       .sidebar-toggle {
-        display: flex;
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        margin-right: 1rem;
+        background: none;
+        border: none;
+        padding: 4px;
       }
 
+      .sidebar-toggle span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+      }
+
+      /* ── LAYOUT ── */
+      .layout {
+        display: flex;
+        padding-top: var(--navbar-height);
+        min-height: 100vh;
+      }
+
+      /* ── SIDEBAR ── */
+      .sidebar {
+        position: fixed;
+        top: var(--navbar-height);
+        left: 0;
+        bottom: 0;
+        width: var(--sidebar-width);
+        background: var(--sidebar-bg);
+        border-right: 1px solid var(--border);
+        overflow-y: auto;
+        padding: 1.5rem 0;
+        transition: transform 0.25s ease;
+      }
+
+      .sidebar-group-title {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-light);
+        padding: 0.8rem 1.5rem 0.4rem;
+      }
+
+      .sidebar ul {
+        list-style: none;
+      }
+
+      .sidebar-link {
+        display: block;
+        padding: 0.35rem 1.5rem;
+        font-size: 0.9rem;
+        color: var(--text-light);
+        text-decoration: none;
+        border-left: 3px solid transparent;
+        transition:
+          color 0.15s,
+          border-color 0.15s,
+          background 0.15s;
+      }
+
+      .sidebar-link:hover {
+        color: var(--accent);
+        background: rgba(62, 175, 124, 0.06);
+      }
+
+      .sidebar-link.active {
+        color: var(--accent);
+        border-left-color: var(--accent);
+        background: rgba(62, 175, 124, 0.08);
+        font-weight: 600;
+      }
+
+      .sidebar-subgroup {
+        padding-left: 0.75rem;
+      }
+
+      .sidebar-subgroup-title {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text);
+        padding: 0.5rem 1.5rem 0.25rem;
+        cursor: pointer;
+      }
+
+      /* ── MAIN CONTENT ── */
       .main {
-        margin-left: 0;
+        margin-left: var(--sidebar-width);
+        flex: 1;
+        min-width: 0;
       }
 
       .content {
-        padding: 1.5rem 1.25rem 3rem;
+        max-width: 780px;
+        margin: 0 auto;
+        padding: 2.5rem 2.5rem 4rem;
       }
 
+      /* ── PAGE NAV (top breadcrumb area) ── */
+      .page-nav-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 2rem;
+      }
+
+      .page-nav-top a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      .page-nav-top a:hover {
+        text-decoration: underline;
+      }
+
+      /* ── TYPOGRAPHY ── */
       h1 {
-        font-size: 1.5rem;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 1rem;
+        line-height: 1.3;
       }
-    }
-  </style>
-</head>
 
-<body>
+      h2 {
+        font-size: 1.35rem;
+        font-weight: 600;
+        color: var(--text);
+        margin: 2rem 0 0.75rem;
+        padding-bottom: 0.4rem;
+        border-bottom: 1px solid var(--border);
+      }
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <button class="sidebar-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')"
-      aria-label="Toggle sidebar">
-      <span></span><span></span><span></span>
-    </button>
-    <a href="/odoo-tech-course/" class="site-name">Odoo Technical Course</a>
-    <span class="nav-right">Howdy Partner</span>
-  </header>
+      p {
+        line-height: 1.75;
+        color: var(--text);
+        margin-bottom: 1rem;
+      }
 
-  <div class="layout">
+      ul {
+        padding-left: 1.5rem;
+        margin-bottom: 1rem;
+      }
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-      <ul class="sidebar-links">
-        <li>
-          <section class="sidebar-group depth-0">
-            <p class="sidebar-heading open"><span>Exercises</span></p>
-            <ul class="sidebar-links sidebar-group-items">
-              <li>
-                <section class="sidebar-group is-sub-group depth-1">
-                  <p class="sidebar-heading"><span>Animal Shelter</span></p>
-                  <ul class="sidebar-links sidebar-group-items">
-                    <li><a href="./animal-shelter-part-1.html" class="sidebar-link">Activity 1</a></li>
-                    <li><a href=./animal-shelter-part-2.html" class="sidebar-link">Activity 2</a></li>
-                    <li><a href="./animal-shelter-part-3.html" class="sidebar-link">Activity 3</a></li>
-                    <li><a href="./animal-shelter-part-4.html" class="sidebar-link">Activity 4</a></li>
-                    <li><a href="./animal-shelter-part-5.html" class="sidebar-link">Activity 5</a></li>
-                    <li><a href="./animal-shelter-part-6.html" class="sidebar-link">Activity 6</a></li>
-                    <li><a href="./animal-shelter-part-7.html" class="sidebar-link">Activity 7</a></li>
-                    <li><a href="./animal-shelter-part-8.html" class="sidebar-link">Activity 8</a></li>
-                    <li><a href="./animal-shelter-part-9.html" class="sidebar-link">Activity 9</a></li>
-                    <li><a href="./animal-shelter-part-10.html" class="sidebar-link">Activity 10</a></li>
-                  </ul>
-                </section>
-              </li>
-            </ul>
-          </section>
-      </ul>
-    </aside>
+      li {
+        line-height: 1.8;
+        margin-bottom: 0.25rem;
+        color: var(--text);
+      }
 
-    <!-- MAIN -->
-    <main class="main">
-      <div class="content">
+      strong {
+        color: var(--text);
+        font-weight: 600;
+      }
 
-        <!-- TOP NAV -->
-        <div class="page-nav-top">
-          <a href="./animal-shelter-part-1.html">← Go to Activity 1</a>
-          <a href="/odoo-tech-course/exercises/sallys-flower-shop/models.html">Models →</a>
-        </div>
+      code {
+        font-family:
+          "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        font-size: 0.875em;
+        background: var(--code-bg);
+        color: #476582;
+        padding: 0.18em 0.45em;
+        border-radius: 3px;
+      }
 
-        <!-- PAGE CONTENT -->
-        <h1>Animal Shelter Management</h1>
-        <p>An animal rescue and rehabilitation center has approached your company to implement a shelter management
-          solution using Odoo. Their requirements are as follows:</p>
+      /* ── NOTE BOX ── */
+      .note-box {
+        background: var(--note-bg);
+        border-left: 4px solid var(--accent);
+        border-radius: 0 6px 6px 0;
+        padding: 1.25rem 1.5rem;
+        margin-top: 2.5rem;
+      }
 
-        <h2>Animals</h2>
-        <p>The rescued, rehabilitated, and resident animals to be managed within the shelter module. Animals include the
-          following attributes based on the current system schema:</p>
-        <ul>
-          <li><strong>Nickname:</strong> A descriptive name for the individual animal (Required).</li>
-          <li><strong>Picture:</strong> An image upload field for the animal's profile (Max dimensions: 500x500 pixels).
+      .note-box h2 {
+        font-size: 1.1rem;
+        color: var(--accent-dark);
+        border-bottom: none;
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0;
+      }
+
+      .note-box li {
+        color: #3a5a4a;
+      }
+
+      /* ── PAGE NAV BOTTOM ── */
+      .page-nav-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .page-nav-bottom a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+
+      .page-nav-bottom a:hover {
+        text-decoration: underline;
+      }
+
+      /* ── MOBILE ── */
+      @media (max-width: 768px) {
+        :root {
+          --sidebar-width: 0px;
+        }
+
+        .sidebar {
+          transform: translateX(-100%);
+          width: 280px;
+          z-index: 90;
+        }
+
+        .sidebar.open {
+          transform: translateX(0);
+        }
+
+        .sidebar-toggle {
+          display: flex;
+        }
+
+        .main {
+          margin-left: 0;
+        }
+
+        .content {
+          padding: 1.5rem 1.25rem 3rem;
+        }
+
+        h1 {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+      <button
+        class="sidebar-toggle"
+        onclick="document.querySelector('.sidebar').classList.toggle('open')"
+        aria-label="Toggle sidebar"
+      >
+        <span></span><span></span><span></span>
+      </button>
+      <a href="/odoo-tech-course/" class="site-name">Odoo Technical Course</a>
+      <span class="nav-right">Howdy Partner</span>
+    </header>
+
+    <div class="layout">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <ul class="sidebar-links">
+          <li>
+            <section class="sidebar-group depth-0">
+              <p class="sidebar-heading open"><span>Exercises</span></p>
+              <ul class="sidebar-links sidebar-group-items">
+                <li>
+                  <section class="sidebar-group is-sub-group depth-1">
+                    <p class="sidebar-heading"><span>Animal Shelter</span></p>
+                    <ul class="sidebar-links sidebar-group-items">
+                      <li>
+                        <a
+                          href="./animal-shelter-part-1.html"
+                          class="sidebar-link"
+                          >Activity 1</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="./animal-shelter-part-2.html"
+                          class="sidebar-link"
+                          >Activity 2</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="./animal-shelter-part-3.html"
+                          class="sidebar-link"
+                          >Activity 3</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="./animal-shelter-part-4.html"
+                          class="sidebar-link"
+                          >Activity 4</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="./animal-shelter-part-5.html"
+                          class="sidebar-link"
+                          >Activity 5</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="./animal-shelter-part-6.html"
+                          class="sidebar-link"
+                          >Activity 6</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="./animal-shelter-part-7.html"
+                          class="sidebar-link"
+                          >Activity 7</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="./animal-shelter-part-8.html"
+                          class="sidebar-link"
+                          >Activity 8</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="./animal-shelter-part-9.html"
+                          class="sidebar-link"
+                          >Activity 9</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="./animal-shelter-part-10.html"
+                          class="sidebar-link"
+                          >Activity 10</a
+                        >
+                      </li>
+                    </ul>
+                  </section>
+                </li>
+              </ul>
+            </section>
           </li>
-          <li><strong>Birth Date:</strong> The estimated or known date of birth for the animal.</li>
-          <li><strong>Description:</strong> A detailed text summary of the animal's history, behavior, or special needs.
-          </li>
-          <li><strong>Gender:</strong> The sex of the animal (Male or Female, Required).</li>
-          <li><strong>Weight:</strong> The current weight of the animal.</li>
-          <li><strong>Arrival Time:</strong> The precise date and time the animal was admitted to the center.</li>
-          <li><strong>Status:</strong> The current lifecycle stage of the animal (Not Received, At The Center, or
-            Released). Defaults to "Not Received".</li>
-          <li><strong>Is Vaccinated:</strong> A checkbox indicating vaccination status. Defaults to True.</li>
-          <li><strong>Diet:</strong> The dietary classification of the animal (Herbivore, Carnivore, or Omnivore).</li>
-          <li><strong>Animal Type:</strong> A categorization linking the animal to a specific species group (e.g.,
-            Canine, Feline, Raptor).</li>
-          <li><strong>Feeding Time:</strong> The scheduled daily time for feeding the animal.</li>
-          <li><strong>Vaccines:</strong> A list of medical vaccines administered to the animal.</li>
-          <li><strong>Permitted Release Countries:</strong> A list of target geographical regions where the animal is
-            legally allowed to be re-introduced or adopted.</li>
-          <li><strong>Location:</strong> The specific pen, enclosure, or wing within the facility where the animal is
-            housed.</li>
-          <li><strong>Sponsor:</strong> The external partner (individual or corporate donor) sponsoring the animal’s
-            care.</li>
-          <li><strong>Assigned Vet:</strong> The internal staff veterinarian responsible for the animal’s health.</li>
-          <li><strong>Vet Phone:</strong> A read-only field automatically pulling the assigned veterinarian's work phone
-            number.</li>
-          <li><strong>Final Released Country:</strong> The specific country where the animal was successfully released
-            or adopted.</li>
         </ul>
+      </aside>
 
-        <h2>Animal Types</h2>
-        <p>The species of an animal</p>
-        <ul>
-          <li><strong>Name:</strong> The species category or type name (Required).</li>
-        </ul>
+      <!-- MAIN -->
+      <main class="main">
+        <div class="content">
+          <!-- TOP NAV -->
+          <div class="page-nav-top">
+            <a href="./animal-shelter-part-1.html">← Go to Activity 1</a>
+            <a href="/odoo-tech-course/exercises/sallys-flower-shop/models.html"
+              >Models →</a
+            >
+          </div>
 
-        <h2>Animal Vaccines</h2>
-        <p>Medical records of preventative treatments available.</p>
-        <ul>
-          <li><strong>Name:</strong> The name of the specific vaccine (Required).</li>
-        </ul>
+          <!-- PAGE CONTENT -->
+          <h1>Happy Tails Animal Shelter — Module Foundation</h1>
+          <p>
+            Happy Tails Animal Shelter is a regional animal rescue and adoption
+            center that has grown rapidly over the past several years. What
+            began as a small operation with a handful of kennels now cares for
+            over 100 animals at any given time, supported by a growing team
+            responsible for veterinary care, intake, adoptions, and volunteer
+            coordination.
+          </p>
 
-        <h2>Animal Locations</h2>
-        <p>The specific pen, enclosure, or wing within the facility where the animal is
-            housed.</p>
-        <ul>
-          <li><strong>Name:</strong> The name of the specific location (Required).</li>
-        </ul>
+          <p>
+            As the shelter has scaled, its reliance on spreadsheets and
+            disconnected tools has become unsustainable. There is no centralized
+            way to track animals, manage medical records, or coordinate
+            adoptions, and the organization has decided to move to a
+            custom-built Odoo application tailored to its specific workflows
+            rather than adapting an off-the-shelf solution.
+          </p>
+          <p>
+            You have been brought on as the Odoo developer responsible for
+            designing and building this system from the ground up. Before any
+            functionality can be added — pet profiles, medical logs, adoption
+            tracking — the underlying module must be properly structured so that
+            Odoo can recognize it, load it correctly, and eventually enforce the
+            right access controls across the organization.
+          </p>
 
-        <div class="note-box">
-          <h2>Implementation Notes</h2>
-          <ul>
-            <li><strong>Custom Models:</strong> Create appropriate models, views, and access rights for Animals, Animal
-              Types, Animal Locations and Shelters. Ensure proper relational fields (Many2one, Many2many) are
-              established between them.</li>
-            <li><strong>Inheritance:</strong> Sponsors are <code>res.partner</code> records. Vets are existing shelter
-              employees linked to <code>hr.employee</code> with a related field to fetch their work phone automatically.
-            </li>
-            <li><strong>Logic &amp; Constraints:</strong> Implement a Python constraint (<code>@api.constrains</code>)
-              ensuring neither the Permitted Release Countries nor the Final Released Country can include "Belgium". Add
-              header buttons on the form view to trigger manual state changes to <code>At The Center</code> and
-              <code>Released</code>.
-            </li>
-            <li><strong>Navigation:</strong> Create a new top-level menu item titled <strong>Shelter Management</strong>
-              with appropriate sub-menus for managing animals, species types, and facility locations.</li>
-          </ul>
+          <!-- BOTTOM NAV -->
+          <div class="page-nav-bottom">
+            <a href="./animal-shelter-part-1.html">← Go to Activity 1</a>
+            <a href="/odoo-tech-course/exercises/sallys-flower-shop/models.html"
+              >Models →</a
+            >
+          </div>
         </div>
-
-        <!-- BOTTOM NAV -->
-        <div class="page-nav-bottom">
-          <a href="./animal-shelter-part-1.html">← Go to Activity 1</a>
-          <a href="/odoo-tech-course/exercises/sallys-flower-shop/models.html">Models →</a>
-        </div>
-
-      </div>
-    </main>
-
-  </div>
-
-</body>
-
+      </main>
+    </div>
+  </body>
 </html>
