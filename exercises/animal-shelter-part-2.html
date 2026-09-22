@@ -367,14 +367,23 @@ Copy
                 <!-- PAGE CONTENT -->
                 <h1>Animal Shelter — Activity 2</h1>
                 <div>
-                    <p> Now let's create our first model. Under the models folder, create a file called animals.py.</p>
-                    <p> In the newly created model animals, add the following fields:
+                    <p>
+                        With the animal_shelter module now properly structured and installable, the next priority for Happy Tails is to begin capturing actual data about the animals in their care. Currently, basic details such as an animal's name, weight, diet, and vaccination status are scattered across spreadsheets and paper intake forms, making it difficult for staff to get a clear, reliable picture of any single animal.
+                    </p>
+                    <p>
+                        To address this, the shelter needs a dedicated data model within the system that represents an individual animal and stores its core profile information — the kind of record that veterinary staff, intake coordinators, and shelter management will all rely on going forward.
+                    </p>
+                    <br />
+                    <h3>The Task</h3>
+                    <p> Your task is to build the first data model for the animal_shelter module: a model representing an animal at the shelter.</p>
+                    <p> Inside the models folder, create a new file called animals.py, and define a model that captures the following information about each animal: </p>
                     <ul>
                         <li>
                             A mandatory character field for the animal's nickname.
                         </li>
                         <li>
-                            An image field for the animal's picture with a maximum width and height of 500 pixels. (Hint: Use an Image field and the parameters max_width and max_height for this).
+                            An image field for the animal's picture, with a maximum width and height of 500 pixels (use an Image field with the max_width and max_height parameters).
+
                         </li>
                         <li>
                             A date field to record the animal's birth date.
@@ -390,25 +399,27 @@ Copy
                         </li>
                         <li>
                             A date and time field to record the animal's precise arrival time.
+
                         </li>
                         <li>
-                            A selection field to show whether the animal is "not received", "at the center" or
-                            "released". When creating a new animal, the value should be "not received".
+                           A selection field to track the animal's status — "Not Received", "At the Center", or "Released" — which should default to "Not Received" when a new animal record is created.
                         </li>
                         <li>
-                            A boolean field to show whether the animal is vaccinated or not. By default, it should be
-                            true.
+                            A boolean field to indicate whether the animal is vaccinated, defaulting to True.
+
                         </li>
                         <li>
-                            A selection field to show the diet type of the animal. It can be a herbivore, a carnivore or
-                            an omnivore.
+                           A selection field to capture the animal's diet type — Herbivore, Carnivore, or Omnivore.
                         </li>
                         <li>
-                            A float field for the feeding time of the animal.
+                            A float field to record the animal's feeding time.
+
                         </li>
                     </ul>
-
+                    <p>
+                        By the end of this task, Happy Tails should have a working animals model capable of storing a complete profile for each animal in their care — the foundation that later activities (medical logs, adoption tracking, and access rights) will build directly on top of.
                     </p>
+                    
                 </div>
 
                 <!-- BOTTOM NAV -->
